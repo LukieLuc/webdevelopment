@@ -2,24 +2,376 @@
 <html lang="nl">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Web Development I</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0b2545;
+            --blue: #1d4ed8;
+            --blue-mid: #3b82f6;
+            --sky: #bfdbfe;
+            --ice: #eff6ff;
+            --white: #ffffff;
+            --text: #0b2545;
+            --muted: #4b6584;
+            --line: #cfe0f7;
+            --radius: 14px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+            color: var(--text);
+            background: var(--ice);
+            line-height: 1.55;
+        }
+
+        header {
+            position: relative;
+            overflow: hidden;
+            color: var(--white);
+            padding: 56px 20px 88px;
+            background: linear-gradient(120deg, #0b2545, #1d4ed8, #0f3a8a, #2563eb, #0b2545);
+            background-size: 300% 300%;
+            animation: drift 18s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        #bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        header .wrap { position: relative; z-index: 1; }
+
+        .wrap { max-width: 760px; margin: 0 auto; }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: clamp(1.9rem, 5vw, 2.8rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        header p { margin: 0; color: var(--sky); }
+
+        main { position: relative; z-index: 2; margin-top: -48px; padding: 0 20px 64px; }
+
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .search {
+            flex: 1 1 240px;
+            padding: 14px 18px;
+            font: inherit;
+            color: var(--text);
+            background: var(--white);
+            border: 2px solid transparent;
+            border-radius: var(--radius);
+            box-shadow: 0 8px 24px rgba(11, 37, 69, .18);
+        }
+
+        .search:focus { outline: none; border-color: var(--blue-mid); }
+
+        .btn {
+            font: inherit;
+            font-size: .9rem;
+            padding: 0 18px;
+            min-height: 48px;
+            color: var(--white);
+            background: var(--navy);
+            border: 0;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background .15s;
+        }
+
+        .btn:hover { background: var(--blue); }
+
+        :focus-visible { outline: 3px solid var(--blue-mid); outline-offset: 2px; }
+
+        .labo {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            margin-bottom: 14px;
+            overflow: hidden;
+        }
+
+        .labo[open] { border-color: var(--blue-mid); }
+
+        summary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 22px;
+            cursor: pointer;
+            list-style: none;
+            user-select: none;
+        }
+
+        summary::-webkit-details-marker { display: none; }
+        summary:hover { background: var(--ice); }
+
+        summary h2 { margin: 0; font-size: 1.2rem; flex: 1; }
+
+        .count {
+            font-size: .8rem;
+            color: var(--blue);
+            background: var(--ice);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 2px 12px;
+        }
+
+        .chevron {
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid var(--blue);
+            border-bottom: 2px solid var(--blue);
+            transform: rotate(-45deg);
+            transition: transform .2s;
+        }
+
+        .labo[open] .chevron { transform: rotate(45deg); }
+
+        .opdrachten {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 0;
+            padding: 4px 22px 22px;
+            list-style: none;
+        }
+
+        .opdrachten a {
+            display: block;
+            padding: 14px 16px;
+            color: var(--blue);
+            font-weight: 600;
+            text-decoration: none;
+            background: var(--ice);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            transition: background .15s, color .15s, transform .15s;
+        }
+
+        .opdrachten a:hover {
+            color: var(--white);
+            background: var(--blue);
+            border-color: var(--blue);
+            transform: translateY(-2px);
+        }
+
+        .empty {
+            text-align: center;
+            color: var(--muted);
+            padding: 32px 0;
+        }
+
+        [hidden] { display: none !important; }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; animation: none !important; }
+        }
+    </style>
 </head>
 
 <body>
-<h1>Web Development I</h1>
-<ul>
-    <li>
-        <h2>Labo 2</h2>
-        <ol>
-            <li><a href="labo_2/opdracht_2.html">Opdracht 2</a></li>
-            <li><a href="labo_2/opdracht_3.html">Opdracht 3</a></li>
-            <li><a href="labo_2/opdracht_4.html">Opdracht 4</a></li>
-            <li><a href="labo_2/opdracht_5.html">Opdracht 5</a></li>
-            <li><a href="labo_2/opdracht_8.html">Opdracht 8</a></li>
-            <li><a href="labo_2/voorbeeld headings.html">Opdracht 9</a></li>
-        </ol>
-    </li>
-</ul>
+<header>
+    <canvas id="bg" aria-hidden="true"></canvas>
+    <div class="wrap">
+        <h1>Web Development I</h1>
+        <p>Overzicht van alle labo's en opdrachten</p>
+    </div>
+</header>
+
+<main>
+    <div class="wrap">
+        <div class="toolbar">
+            <input class="search" id="search" type="search" placeholder="Zoek een labo of opdracht…"
+                   aria-label="Zoek een labo of opdracht">
+            <button class="btn" id="expand" type="button">Alles openen</button>
+            <button class="btn" id="collapse" type="button">Alles sluiten</button>
+        </div>
+
+        <div id="labos"></div>
+        <p class="empty" id="empty" hidden>Geen resultaten gevonden.</p>
+        <noscript><p class="empty">Schakel JavaScript in om de opdrachten te zien.</p></noscript>
+    </div>
+</main>
+
+<script>
+    /*
+     * NIEUW LABO TOEVOEGEN
+     * Kopieer een blok in de lijst hieronder en pas het aan.
+     *  - nummer:       het labonummer (map = labo_<nummer>)
+     *  - opdrachten:   lijst van opdrachten
+     *      - nr:       opdrachtnummer (bestand = labo_<nummer>/opdracht_<nr>.html)
+     *      - bestand:  (optioneel) eigen bestandsnaam binnen de labomap
+     *      - titel:    (optioneel) eigen titel, standaard "Opdracht <nr>"
+     */
+    const LABOS = [
+        {
+            nummer: 2,
+            opdrachten: [
+                { nr: 2 },
+                { nr: 3 },
+                { nr: 4 },
+                { nr: 5 },
+                { nr: 8 },
+                { nr: 9, bestand: "voorbeeld headings.html" },
+            ],
+        },
+        {
+            nummer: 3,
+            opdrachten: [
+                { nr: 1 },
+            ],
+        },
+    ];
+
+    const container = document.getElementById("labos");
+    const searchInput = document.getElementById("search");
+    const emptyMessage = document.getElementById("empty");
+
+    function buildLabo(labo, isNewest) {
+        const details = document.createElement("details");
+        details.className = "labo";
+        details.open = isNewest;
+
+        const summary = document.createElement("summary");
+        summary.innerHTML = `<h2>Labo ${labo.nummer}</h2>
+            <span class="count">${labo.opdrachten.length} ${labo.opdrachten.length === 1 ? "opdracht" : "opdrachten"}</span>
+            <span class="chevron" aria-hidden="true"></span>`;
+        details.appendChild(summary);
+
+        const list = document.createElement("ul");
+        list.className = "opdrachten";
+        for (const o of labo.opdrachten) {
+            const titel = o.titel || `Opdracht ${o.nr}`;
+            const bestand = o.bestand || `opdracht_${o.nr}.html`;
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = encodeURI(`labo_${labo.nummer}/${bestand}`);
+            a.textContent = titel;
+            li.appendChild(a);
+            list.appendChild(li);
+        }
+        details.appendChild(list);
+        return details;
+    }
+
+    // Labo's staan in dezelfde volgorde als in de lijst; het laatste labo staat standaard open
+    LABOS.forEach((labo, i) => container.appendChild(buildLabo(labo, i === LABOS.length - 1)));
+
+    const laboElements = [...container.querySelectorAll(".labo")];
+    const openState = new Map();
+
+    function filter() {
+        const q = searchInput.value.trim().toLowerCase();
+        let zichtbaar = 0;
+
+        laboElements.forEach(el => {
+            const laboMatch = el.querySelector("h2").textContent.toLowerCase().includes(q);
+            let matches = 0;
+            el.querySelectorAll("li").forEach(li => {
+                const tonen = !q || laboMatch || li.textContent.toLowerCase().includes(q);
+                li.hidden = !tonen;
+                if (tonen) matches++;
+            });
+            el.hidden = matches === 0;
+            if (matches > 0) zichtbaar++;
+
+            if (q) {
+                if (!openState.has(el)) openState.set(el, el.open);
+                el.open = matches > 0;
+            } else if (openState.has(el)) {
+                el.open = openState.get(el);
+                openState.delete(el);
+            }
+        });
+
+        emptyMessage.hidden = zichtbaar > 0;
+    }
+
+    /* Geanimeerde achtergrond: zachte, bewegende golven in de header */
+    (function () {
+        const canvas = document.getElementById("bg");
+        const ctx = canvas.getContext("2d");
+        const header = canvas.parentElement;
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+        // Elke laag: kleur, amplitude, golflengte, snelheid, hoogte (0 = boven, 1 = onder)
+        const lagen = [
+            { kleur: "rgba(59, 130, 246, 0.25)", amp: 22, len: 0.010, snelheid: 0.6, y: 0.55 },
+            { kleur: "rgba(147, 197, 253, 0.18)", amp: 28, len: 0.007, snelheid: -0.45, y: 0.65 },
+            { kleur: "rgba(29, 78, 216, 0.35)", amp: 18, len: 0.013, snelheid: 0.8, y: 0.75 },
+            { kleur: "rgba(239, 246, 255, 0.95)", amp: 10, len: 0.009, snelheid: -0.35, y: 0.97 },
+        ];
+
+        let w = 0, h = 0;
+
+        function resize() {
+            const dpr = window.devicePixelRatio || 1;
+            w = header.clientWidth;
+            h = header.clientHeight;
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        function teken(t) {
+            ctx.clearRect(0, 0, w, h);
+            for (const l of lagen) {
+                ctx.fillStyle = l.kleur;
+                ctx.beginPath();
+                ctx.moveTo(0, h);
+                for (let x = 0; x <= w; x += 6) {
+                    const y = h * l.y
+                        + Math.sin(x * l.len + t * l.snelheid) * l.amp
+                        + Math.sin(x * l.len * 2.3 - t * l.snelheid * 0.7) * l.amp * 0.4;
+                    ctx.lineTo(x, y);
+                }
+                ctx.lineTo(w, h);
+                ctx.closePath();
+                ctx.fill();
+            }
+        }
+
+        function loop(ms) {
+            teken(ms / 1000);
+            if (!reduced.matches) requestAnimationFrame(loop);
+        }
+
+        resize();
+        window.addEventListener("resize", () => { resize(); teken(performance.now() / 1000); });
+        requestAnimationFrame(loop);
+    })();
+
+    searchInput.addEventListener("input", filter);
+    document.getElementById("expand").addEventListener("click", () =>
+        laboElements.forEach(el => { if (!el.hidden) el.open = true; }));
+    document.getElementById("collapse").addEventListener("click", () =>
+        laboElements.forEach(el => { el.open = false; }));
+</script>
 </body>
 
 </html>
