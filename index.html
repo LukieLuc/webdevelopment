@@ -163,21 +163,20 @@
         .labo[open] .chevron { transform: rotate(45deg); }
 
         .opdrachten {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 10px;
             margin: 0;
             padding: 4px 22px 22px;
             list-style: none;
         }
 
-        .opdrachten li { display: flex; min-width: 0; }
+        .opdrachten li { display: flex; flex: 1 1 150px; max-width: 100%; }
 
         .opdrachten a {
             display: block;
             flex: 1;
-            min-width: 0;
-            overflow-wrap: anywhere;
+            overflow-wrap: break-word;
             line-height: 1.35;
             padding: 14px 16px;
             color: var(--blue);
