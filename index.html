@@ -130,9 +130,19 @@
         summary::-webkit-details-marker { display: none; }
         summary:hover { background: var(--ice); }
 
-        summary h2 { margin: 0; font-size: 1.2rem; flex: 1; }
+        summary h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            flex: 1;
+            min-width: 0;
+            overflow-wrap: anywhere;
+            line-height: 1.35;
+        }
+
+        .count, .chevron { flex-shrink: 0; }
 
         .count {
+            white-space: nowrap;
             font-size: .8rem;
             color: var(--blue);
             background: var(--ice);
@@ -161,8 +171,14 @@
             list-style: none;
         }
 
+        .opdrachten li { display: flex; min-width: 0; }
+
         .opdrachten a {
             display: block;
+            flex: 1;
+            min-width: 0;
+            overflow-wrap: anywhere;
+            line-height: 1.35;
             padding: 14px 16px;
             color: var(--blue);
             font-weight: 600;
@@ -223,6 +239,7 @@
      * NIEUW LABO TOEVOEGEN
      * Kopieer een blok in de lijst hieronder en pas het aan.
      *  - nummer:       het labonummer (map = labo_<nummer>)
+     *  - titel:        (optioneel) naam achter het labonummer, bv. "Personal homepage" -> "Labo 3: Personal homepage"
      *  - opdrachten:   lijst van opdrachten
      *      - nr:       opdrachtnummer (bestand = labo_<nummer>/opdracht_<nr>.html)
      *      - bestand:  (optioneel) eigen bestandsnaam binnen de labomap
@@ -245,9 +262,12 @@
             opdrachten: [
                 { titel: "Personal Homepage", bestand: "personal_homepage/opdracht_4.html" },
                 { titel: "Contact Informatie", bestand: "contactinformatie/contactinfo.html" },
+                { titel: "Opleidingsaanbod", bestand: "opleidingsaanbod.html" },
+                { titel: "Personal Homepage Kopie", bestand: "personal_homepage/opdracht_4_copy.html" },
             ],
         },
     ];
+
 
     const container = document.getElementById("labos");
     const searchInput = document.getElementById("search");
@@ -259,9 +279,11 @@
         details.open = isNewest;
 
         const summary = document.createElement("summary");
-        summary.innerHTML = `<h2>Labo ${labo.nummer}</h2>
+        const titel = labo.titel ? `Labo ${labo.nummer}: ${labo.titel}` : `Labo ${labo.nummer}`;
+        summary.innerHTML = `<h2></h2>
             <span class="count">${labo.opdrachten.length} ${labo.opdrachten.length === 1 ? "opdracht" : "opdrachten"}</span>
             <span class="chevron" aria-hidden="true"></span>`;
+        summary.querySelector("h2").textContent = titel;
         details.appendChild(summary);
 
         const list = document.createElement("ul");
