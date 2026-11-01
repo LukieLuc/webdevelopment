@@ -1,0 +1,8 @@
+
+p > a {
+    background-image: url("../images/link.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 1em 1em;
+    padding-left: 1.2em;
+}
