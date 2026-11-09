@@ -25,7 +25,7 @@ h2 {
 }
 
 section > header{ 
-    background-image: url("/labo_7/images/header.jpg");
+    background-image: url("../images/header.jpg");
     padding-bottom: 25px;
     background-size: cover;
     color: white;
