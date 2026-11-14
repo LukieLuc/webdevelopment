@@ -39,7 +39,7 @@ a{
     color: antiquewhite;
 }
 a:hover{
-    /* vul maar in */
+    color: rgb(255, 174, 188);
 }
 
 ul, table, td, p{
