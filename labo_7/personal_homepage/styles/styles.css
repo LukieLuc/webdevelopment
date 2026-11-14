@@ -19,6 +19,26 @@ h2 {
     text-decoration: underline;
 }
 
+section.personal-info {
+    margin: 0 auto;
+    width: 85%;
+}
+
+section.personal-info ul{
+    list-style: none;
+    padding-left: 20%;
+    width: 500px;
+    
+}
+section.personal-info img{
+    display: block;
+    float:right;
+}
+
+section.hobbies{
+    clear:both;
+}
+
 .foto-lucas {
-    margin-left: 60%;
+
 }
