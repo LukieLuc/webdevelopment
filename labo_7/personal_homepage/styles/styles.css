@@ -1,11 +1,28 @@
-body {
-    background-color: #5179a0;
-    color: white;
+* {
+    margin: 0;
 }
 
-h1 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+body {
+    font-family: "Albert Sans", sans-serif;
+    background-color: #fefef3;
+    color: white;
+    font-size: 0.8em;
+}
+
+header {
+    background-color: #5A352A;
+    padding: 40px;
+    margin-bottom: 40px;
+}
+
+section {
+    margin: 20px 0 60px 0;
+    border-bottom: 1px solid #333;
+}
+
+h1, h2 {
     text-align: center;
+    font-family: "Unbounded", sans-serif;
 }
 
 h1:hover {
@@ -14,31 +31,45 @@ h1:hover {
 }
 
 h2 {
-    padding-top: 20px;
-    text-align: center;
-    text-decoration: underline;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    letter-spacing: 5px;
+    color: #333;
 }
 
-section.personal-info {
-    margin: 0 auto;
-    width: 85%;
-}
-
-section.personal-info ul{
+ul {
     list-style: none;
-    padding-left: 20%;
-    width: 500px;
-    
-}
-section.personal-info img{
-    display: block;
-    float:right;
-}
-
-section.hobbies{
-    clear:both;
+    width: fit-content; 
+    background-color: #A47963;
+    font-size: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 25px;
+    text-align: center;
+    margin: 40px 0;
+    margin-inline: auto;
 }
 
-.foto-lucas {
+/* Specifieke regels voor classes */
 
+
+.persoonlijke-info > ul {
+    line-height: 2;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
 }
+
+figure {
+    /*margin-inline: auto;*/
+    margin: auto 0;
+    text-align: center;
+}
+
+figure > img {
+    border: 5px solid #66051b;
+    border-radius: 15px;
+}
+
+.prognose-punten {
+    padding-top: 1000px;
+}
+
