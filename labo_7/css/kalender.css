@@ -1,0 +1,32 @@
+
+table {
+    font-size: 25px;
+    margin: 0 auto 0 auto;
+}
+
+table, th, td {
+    border: 1px dotted #333;
+    border-spacing: 0;
+}
+
+.maand {
+    background-color: rgb(170, 170, 200);
+}
+
+.dagen-week {
+    background-color: rgb(35, 37, 70);
+    color: rgb(200 190 240);
+}
+
+td:first-child, td:last-child {
+    background-color: rgb(255, 220, 220)
+}
+
+tbody > tr > td.feestdag {
+    background-color: rgb(250, 120, 120)
+}
+
+td.vorige-maand, td.volgende-maand {
+    background-color: rgb(194, 191, 191);
+}
+
