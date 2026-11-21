@@ -1,6 +1,15 @@
-p {
-    border: 1px solid black;
-    box-sizing: border-box;
-    width: 50%;
+.paragrafen {
+    margin: 10px;
 }
 
+p {
+    display: inline-block;
+    border: 1px solid black;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.lorem-ipsum2 {
+    float: right;
+}
